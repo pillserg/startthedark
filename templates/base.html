@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <title>{%block title%}StartTheDark{% endblock %}</title>
+        {% block extra_head %}{% endblock %}
+    </head>
+    <body>
+        {% block nav %}
+        <ul>
+            <li><a href="{% url ev_tonight %}">Tonight</a></li>
+            <li><a href="{% url ev_archive %}">Архив</a></li>
+            <li><a href="{% url ev_create %}">Создать</a></li>
+        </ul>
+        {% endblock %}
+        
+        {% block main_content %}{% endblock %}
+        
+        {% block extra_body %}{% endblock %}
+    </body>
+</html>
+        

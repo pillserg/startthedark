@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Tonigth - {{block.super}} {% endblock %}
+
+{% block main_content %}
+    <a href="{% url ev_create %}">Create an Event</a>
+    {% if events %}
+        {% for event, attending in events %}
+            <p>{{ event.creator.username }} : {{ event.description }}</p>
+            {% if attending %}
+                <p>You are attending this event</p>
+            {% else %}
+                <p>You are not attending this event</p>
+            {% endif %}
+            <form method="POST" class="toggle_attendance_form" action={% url ev_toggle_attendance %}>
+                {% csrf_token %}
+                <input type="hidden" name="event_id" value="{{event.id}}">
+                {% if attending %}
+                    <input class="attendance unattend" type="submit" value="Unattend">
+                {% else %}
+                    <input class="attendance unattend" type="submit" value="Attend     ">
+                {% endif %}
+            </form>
+        {% endfor %}
+    {% else %}
+            <p>No events for today.</p>
+    {% endif %}
+
+{% endblock %}
